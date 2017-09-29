@@ -1,5 +1,5 @@
 IL17_week_one_in_vivo <- read_csv("~/Dropbox/Tulane/You_lab/Metastasis_project/MPC3/Experiments/Orthotopic_luciferase_imaging/IL17_metastasis_study/DMC20170925101238/IL17_week_one_in_vivo.csv")
-con_1_week_mean_lum <- mean(IL17_week_one_in_vivo$`Avg Radiance [p/s/cm_/sr]`[1:5]), con_1_week_se <- sd(IL17_week_one_in_vivo$`Avg Radiance [p/s/cm_/sr]`[1:5])/sqrt(5)
+con_1_week_mean_lum <- mean(IL17_week_one_in_vivo$`Avg Radiance [p/s/cm_/sr]`[1:5]); con_1_week_se <- sd(IL17_week_one_in_vivo$`Avg Radiance [p/s/cm_/sr]`[1:5])/sqrt(5)
 con_1_week_mean_lum <- mean(IL17_week_one_in_vivo$`Avg Radiance [p/s/cm_/sr]`[1:5]); con_1_week_se <- sd(IL17_week_one_in_vivo$`Avg Radiance [p/s/cm_/sr]`[1:5])/sqrt(5)
 log_con_1_week_mean_lum <- log(con_1_week_mean_lum); log_con_1_week_mean_lum_se <- log(con_1_week_se)
 log_IL17_1_week_mean_lum <- mean(IL17_week_one_in_vivo$`Avg Radiance [p/s/cm_/sr]`[6:13]); log_IL17_1_week_se <- sd(IL17_week_one_in_vivo$`Avg Radiance [p/s/cm_/sr]`[6:13])/sqrt(8)
