@@ -1,0 +1,11 @@
+#week 1 tumor luminescence data for million cell experiment
+weeK_1_luminescence_data <- read_csv("~/Box/Metastasis_project/MPC3/Experiments/Orthotopic_luciferase_imaging/IL17_metastasis_study/million_cells_per_inoculum/DMC20171026095131/weeK_1_luminescence_data.csv")
+con_1_week_mean_lum <- mean(weeK_1_luminescence_data$`Avg Radiance [p/s/cm_/sr]`[1:4])
+con_1_week_se <- sd(weeK_1_luminescence_data$`Avg Radiance [p/s/cm_/sr]`[1:4])/sqrt(4)
+log_con_1_week_mean_lum <- log(con_1_week_mean_lum); log_con_1_week_mean_lum_se <- log(con_1_week_se)
+log_IL17_1_week_mean_lum <- mean(weeK_1_luminescence_data$`Avg Radiance [p/s/cm_/sr]`[5:8]); log_IL17_1_week_se_new <- sd(weeK_1_luminescence_data$`Avg Radiance [p/s/cm_/sr]`[5:8])/sqrt(4)
+log_IL17_1_week_mean_lum <- log(mean(weeK_1_luminescence_data$`Avg Radiance [p/s/cm_/sr]`[5:8])); log_IL17_1_week_se_new <- log(sd(weeK_1_luminescence_data$`Avg Radiance [p/s/cm_/sr]`[5:8])/sqrt(4))
+primary_tumor_growth_new <- data.frame(days_post_inoculation=c(7,7),mean_tumor_lum=c(log_con_1_week_mean_lum,log_IL17_1_week_mean_lum_new),se=c(log_con_1_week_mean_lum_se,log_IL17_1_week_se_new),group=rep(c("con", "IL17"),each=1)
+)
+p <- ggplot(data = primary_tumor_growth_new,mapping = aes(x=primary_tumor_growth_new$days_post_inoculation,y=primary_tumor_growth_new$mean_tumor_lum,group=primary_tumor_growth_new$group,color=group))
+p+geom_col(position = position_dodge(width = 1))+theme_classic()+geom_errorbar(aes(ymax=primary_tumor_growth_new$mean_tumor_lum+primary_tumor_growth_new$se,ymin=primary_tumor_growth_new$mean_tumor_lum+primary_tumor_growth_new$se),position = position_dodge(width = 1))+xlab("Days Post Inoculation")+ylab("Log Mean Tumor Luminescence (p/s/cm2/sr)")+scale_color_manual(values = cbbPalette)

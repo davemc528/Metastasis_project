@@ -1,0 +1,5 @@
+# as always, read csv file into the environment
+log_IL17_3_week_mean_lum <- log(mean(IL17_week_three_in_vivo$`Avg Radiance [p/s/cm_/sr]`[10:17]));log_IL17_3_week_mean_lum_se <- log(mean(IL17_week_three_in_vivo$`Avg Radiance [p/s/cm_/sr]`[10:17])/sqrt(8))
+primary_tumor_growth_week_3 <- data.frame("post.surgery"=c(7,14,21),mean_lum=c(log_con_1_week_mean_lum,log_con_2_week_mean, log_con_3_week_mean_lum, log_IL17_1_week_mean_lum,log_IL17_2_week_mean_lum, log_IL17_3_week_mean_lum),lum_se=c(log_con_1_week_mean_lum_se,log_con_2_week_se,log_con_3_week_mean_lum_se, log_IL17_1_week_se,log_IL17_2_week_mean_lum_se, log_IL17_3_week_mean_lum_se),group=rep(c("con","IL17"),each=3))
+p <- ggplot(data = primary_tumor_growth_week_3,mapping = aes(x=primary_tumor_growth_week_3$post.surgery,y=primary_tumor_growth_week_3$mean_lum,group=primary_tumor_growth_week_3$group,color=group))
+p+geom_line(size=0.75)+geom_point(size=2)+theme_classic()+geom_errorbar(aes(ymax=primary_tumor_growth_week_3$mean_lum+lum_se,ymin=primary_tumor_growth_week_3$mean_lum-lum_se),size=0.75)+xlab("Days Post Inoculation")+ylab("Mean Radiance (log p/s/cm2/sr)")+scale_color_manual(values = cbbPalette)
