@@ -1,0 +1,5 @@
+in_vivo_imaging_p_s <- read_csv("~/Box/Metastasis_project/Metastasis_project_data_analysis/R_file/half_million_cell_experiment/in_vivo_imaging_p-s.csv")
+install.packages("ggplot2")
+cbbPalette <- c("#000000", "#E69F00", "#56B4E9", "#009E73", "#F0E442", "#0072B2", "#D55E00", "#CC79A7")
+p <- ggplot(data = in_vivo_imaging_p_s,aes(x=in_vivo_imaging_p_s$week,y=in_vivo_imaging_p_s$`luminescence (p/s)`,group=in_vivo_imaging_p_s$group,color=in_vivo_imaging_p_s$group))
+p +geom_boxplot()+theme_classic()+geom_jitter(width = 0.2)+xlab("Group")+ylab("Fold Change Total Flux")+scale_color_manual(values = cbbPalette)
